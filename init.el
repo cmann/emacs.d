@@ -10,7 +10,6 @@
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(tooltip-mode -1)
 (menu-bar-mode -1)
 
 (column-number-mode)
@@ -38,6 +37,10 @@
 
 (use-package nord-theme
   :config (load-theme 'nord t))
+
+(use-package highlight-numbers
+  :hook (prog-mode . highlight-numbers-mode)
+  :config (set-face-attribute 'highlight-numbers-number nil :foreground "#B48EAD"))
 
 (use-package delight)
 
