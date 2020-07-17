@@ -1,20 +1,24 @@
 ;;; init --- Emacs configuration -*- lexical-binding: t -*-
 ;;; Commentary:
-
 ;;; Code:
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (when (member "Iosevka" (font-family-list))
   (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
+
+(setq ring-bell-function 'ignore)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
 
-(setq inhibit-startup-screen t)
-(setq ring-bell-function 'ignore)
-(setq column-number-mode t)
+(column-number-mode)
 (global-hl-line-mode)
 (global-auto-revert-mode)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq indent-tabs-mode nil)
 
 (require 'grep)
 (grep-apply-setting
@@ -84,6 +88,7 @@
   (smartparens-global-mode))
 
 (use-package projectile
+  :demand
   :delight
   :config
   (setq projectile-completion-system 'ivy)
@@ -94,20 +99,32 @@
 (use-package magit
   :general (leader "m" 'magit-status))
 
-(use-package terraform-mode)
-
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
 	 ("\\.md\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package rust-mode
+  :general
+  (:keymaps 'rust-mode-map
+            "C-c C-f" nil
+            "C-c c" 'rust-compile
+            "C-c f" 'rust-format
+            "C-c r" 'rust-run
+            "C-c t" 'rust-test))
+
+(use-package terraform-mode)
+(use-package go-mode)
+(use-package zig-mode)
+
 (defun black-format-buffer () (interactive)
        (shell-command (concat "black " buffer-file-name)))
 
-(evil-ex-define-cmd "Black" #'black-format-buffer)
+(general-def python-mode-map
+  "C-c f" 'black-format-buffer)
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq org-directory "~/org")
 
 (provide 'init.el)
 ;;; init.el ends here
