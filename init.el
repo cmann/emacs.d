@@ -6,8 +6,6 @@
 (when (member "Iosevka" (font-family-list))
   (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
 
-(setq ring-bell-function 'ignore)
-
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -16,13 +14,20 @@
 (global-hl-line-mode)
 (global-auto-revert-mode)
 
+(setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq indent-tabs-mode nil)
+(setq org-directory "~/org")
 
 (require 'grep)
 (grep-apply-setting
  'grep-find-command
  '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (ansi-color-apply-on-region compilation-filter-start (point-max)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -118,6 +123,7 @@
             "C-c t" 'rust-test))
 
 (use-package terraform-mode)
+(use-package typescript-mode)
 (use-package go-mode)
 (use-package zig-mode)
 
@@ -126,8 +132,6 @@
 
 (general-def python-mode-map
   "C-c f" 'black-format-buffer)
-
-(setq org-directory "~/org")
 
 (provide 'init.el)
 ;;; init.el ends here
