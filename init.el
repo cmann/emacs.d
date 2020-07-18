@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(when (member "Iosevka" (font-family-list))
-  (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
+(add-to-list 'default-frame-alist '(font . "Iosevka-12"))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -41,7 +39,13 @@
 (setq use-package-always-ensure t)
 
 (use-package nord-theme
-  :config (load-theme 'nord t))
+  :config
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (select-frame frame)
+                  (load-theme 'nord t)))
+    (load-theme 'nord t)))
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
