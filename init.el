@@ -14,8 +14,10 @@
 
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(setq indent-tabs-mode nil)
 (setq org-directory "~/org")
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 (require 'grep)
 (grep-apply-setting
