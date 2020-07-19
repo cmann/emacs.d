@@ -74,8 +74,9 @@
     "SPC" 'execute-extended-command
     "f" 'find-file
     "b" 'switch-to-buffer
+    "e" 'eval-buffer
     "g" 'grep-find
-    "e" 'eval-buffer)
+    "i" 'counsel-imenu)
   (general-nmap
     "]q" 'next-error
     "[q" 'previous-error))
@@ -94,6 +95,11 @@
   :config
   (require 'ivy)
   (ivy-mode))
+
+(use-package amx
+  :config
+  (setq amx-show-key-bindings nil)
+  (amx-mode))
 
 (use-package smartparens
   :delight
@@ -128,10 +134,22 @@
             "C-c r" 'rust-run
             "C-c t" 'rust-test))
 
-(use-package terraform-mode)
+(use-package go-mode
+  :general
+  (:keymaps 'go-mode-map
+            "C-c f" 'gofmt))
+
+(use-package terraform-mode
+  :general
+  (:keymaps 'terraform-mode-map
+            "C-c f" 'terraform-format-buffer))
+
+(use-package zig-mode
+  :general
+  (:keymaps 'zig-mode-map
+            "C-c f" 'zig-format-buffer))
+
 (use-package typescript-mode)
-(use-package go-mode)
-(use-package zig-mode)
 
 (defun black-format-buffer () (interactive)
        (shell-command (concat "black " buffer-file-name)))
