@@ -160,6 +160,11 @@
   (:keymaps 'zig-mode-map
             "C-c f" 'zig-format-buffer))
 
+(use-package dockerfile-mode
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
+
+(use-package yaml-mode)
+
 (use-package typescript-mode)
 
 (defun black-format-buffer () (interactive)
