@@ -19,6 +19,8 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+(add-to-list 'completion-styles 'flex)
+
 (require 'grep)
 (grep-apply-setting
  'grep-find-command
@@ -74,6 +76,7 @@
     "SPC" 'execute-extended-command
     "f" 'find-file
     "b" 'switch-to-buffer
+    "k" 'kill-buffer-and-window
     "e" 'eval-buffer
     "g" 'grep-find
     "i" 'counsel-imenu)
@@ -95,11 +98,14 @@
   :config
   (require 'ivy)
   (ivy-mode))
-
 (use-package amx
   :config
   (setq amx-show-key-bindings nil)
   (amx-mode))
+
+(use-package company
+  :delight
+  :config (global-company-mode))
 
 (use-package smartparens
   :delight
@@ -118,6 +124,10 @@
 
 (use-package magit
   :general (leader "m" 'magit-status))
+
+(use-package yasnippet
+  :config (yas-global-mode))
+(use-package yasnippet-snippets)
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
