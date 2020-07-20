@@ -126,6 +126,7 @@
   :general (leader "m" 'magit-status))
 
 (use-package yasnippet
+  :delight yas-minor-mode
   :config (yas-global-mode))
 (use-package yasnippet-snippets)
 
