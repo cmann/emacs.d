@@ -123,7 +123,7 @@
   :general (leader "p" 'projectile-command-map))
 
 (use-package magit
-  :general (leader "m" 'magit-status))
+  :general (leader "m" 'magit-file-dispatch))
 
 (use-package yasnippet
   :delight yas-minor-mode
@@ -163,7 +163,9 @@
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :mode (("\\.yml\\'" . yaml-mode)
+         ("\\.yaml\\'" . yaml-mode)))
 
 (use-package typescript-mode)
 
