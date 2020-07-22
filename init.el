@@ -32,6 +32,11 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 (setq vc-handled-backends '(Git))
+(customize-set-variable
+ 'tramp-ssh-controlmaster-options
+ (concat
+  "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
+  "-o ControlMaster=auto -o ControlPersist=yes"))
 
 (require 'package)
 (setq package-enable-at-startup nil)
