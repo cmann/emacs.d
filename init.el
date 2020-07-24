@@ -31,6 +31,7 @@
   (ansi-color-apply-on-region compilation-filter-start (point-max)))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+(recentf-mode)
 (setq vc-handled-backends '(Git))
 (customize-set-variable
  'tramp-ssh-controlmaster-options
