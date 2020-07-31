@@ -121,7 +121,8 @@
   :delight
   :config
   (require 'smartparens-config)
-  (smartparens-global-mode))
+  (smartparens-global-mode)
+  (show-smartparens-global-mode))
 
 (use-package projectile
   :demand
