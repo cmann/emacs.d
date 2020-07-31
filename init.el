@@ -11,6 +11,8 @@
 (column-number-mode)
 (global-hl-line-mode)
 (global-auto-revert-mode)
+(electric-pair-mode)
+(show-paren-mode)
 
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -116,13 +118,6 @@
 (use-package company
   :delight
   :config (global-company-mode))
-
-(use-package smartparens
-  :delight
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode)
-  (show-smartparens-global-mode))
 
 (use-package projectile
   :demand
