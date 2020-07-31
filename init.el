@@ -158,6 +158,10 @@
             "C-c t" 'rust-test))
 
 (use-package go-mode
+  :hook (go-mode . cpm/go-mode-hook)
+  :config
+  (defun cpm/go-mode-hook ()
+    (add-hook 'before-save-hook 'gofmt-before-save))
   :general
   (:keymaps 'go-mode-map
             "C-c f" 'gofmt))
