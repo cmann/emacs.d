@@ -97,6 +97,8 @@
 (use-package evil-commentary
   :delight
   :config (evil-commentary-mode))
+(use-package evil-lion
+  :config (evil-lion-mode))
 (use-package undo-tree
   :delight)
 
