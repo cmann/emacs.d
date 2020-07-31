@@ -17,6 +17,7 @@
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
+(setq compilation-read-command nil)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -126,7 +127,12 @@
   (setq projectile-completion-system 'ivy)
   (setq projectile-project-search-path '("~/devel"))
   (projectile-mode)
-  :general (leader "p" 'projectile-command-map))
+  :general
+  (leader "p" 'projectile-command-map)
+  (:keymaps 'prog-mode-map
+            "C-c c" 'projectile-compile-project
+            "C-c t" 'projectile-test-project
+            "C-c r" 'projectile-run-project))
 
 (use-package magit
   :general (leader "m" 'magit-file-dispatch))
