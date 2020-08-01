@@ -188,6 +188,8 @@
 
 (use-package typescript-mode)
 
+(use-package protobuf-mode)
+
 (defun black-format-buffer () (interactive)
        (shell-command (concat "black " buffer-file-name)))
 
