@@ -149,32 +149,27 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package rust-mode
-  :general
-  (:keymaps 'rust-mode-map
-            "C-c C-f" nil
-            "C-c c" 'rust-compile
-            "C-c f" 'rust-format
-            "C-c r" 'rust-run
-            "C-c t" 'rust-test))
+  :general (:keymaps 'rust-mode-map
+                     "C-c C-f" nil
+                     "C-c c" 'rust-compile
+                     "C-c f" 'rust-format
+                     "C-c r" 'rust-run
+                     "C-c t" 'rust-test))
 
 (use-package go-mode
-  :hook (go-mode . cpm/go-mode-hook)
-  :config
-  (defun cpm/go-mode-hook ()
-    (add-hook 'before-save-hook 'gofmt-before-save))
-  :general
-  (:keymaps 'go-mode-map
-            "C-c f" 'gofmt))
+  :hook (go-mode . cm/go-mode-hook)
+  :config (defun cm/go-mode-hook ()
+            (add-hook 'before-save-hook 'gofmt-before-save))
+  :general (:keymaps 'go-mode-map
+                     "C-c f" 'gofmt))
 
 (use-package terraform-mode
-  :general
-  (:keymaps 'terraform-mode-map
-            "C-c f" 'terraform-format-buffer))
+  :general (:keymaps 'terraform-mode-map
+                     "C-c f" 'terraform-format-buffer))
 
 (use-package zig-mode
-  :general
-  (:keymaps 'zig-mode-map
-            "C-c f" 'zig-format-buffer))
+  :general (:keymaps 'zig-mode-map
+                     "C-c f" 'zig-format-buffer))
 
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
