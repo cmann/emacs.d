@@ -30,9 +30,8 @@
  '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
 
 (require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (ansi-color-apply-on-region compilation-filter-start (point-max)))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(add-hook 'compilation-filter-hook
+          (lambda () (ansi-color-apply-on-region compilation-filter-start (point-max))))
 
 (recentf-mode)
 (setq vc-handled-backends '(Git))
@@ -157,9 +156,7 @@
                      "C-c t" 'rust-test))
 
 (use-package go-mode
-  :hook (go-mode . cm/go-mode-hook)
-  :config (defun cm/go-mode-hook ()
-            (add-hook 'before-save-hook 'gofmt-before-save))
+  :hook (go-mode . (lambda () (add-hook 'before-save-hook 'gofmt-before-save)))
   :general (:keymaps 'go-mode-map
                      "C-c f" 'gofmt))
 
