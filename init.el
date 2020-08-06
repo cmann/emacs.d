@@ -123,6 +123,9 @@
   (setq amx-show-key-bindings nil)
   (amx-mode))
 
+(use-package ace-jump-mode
+  :general (leader "j" 'ace-jump-word-mode))
+
 (use-package company
   :delight
   :config (global-company-mode))
