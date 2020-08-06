@@ -18,6 +18,14 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
 (setq compilation-read-command nil)
+(setq create-lockfiles nil)
+(setq vc-make-backup-files t
+      version-control t
+      backup-by-copying t
+      kept-new-versions 10
+      kept-old-versions 0
+      delete-old-versions t
+      backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
