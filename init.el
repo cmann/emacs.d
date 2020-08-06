@@ -13,6 +13,7 @@
 (global-auto-revert-mode)
 (electric-pair-mode)
 (show-paren-mode)
+(recentf-mode)
 
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -41,7 +42,6 @@
 (add-hook 'compilation-filter-hook
           (lambda () (ansi-color-apply-on-region compilation-filter-start (point-max))))
 
-(recentf-mode)
 (setq vc-handled-backends '(Git))
 (customize-set-variable
  'tramp-ssh-controlmaster-options
