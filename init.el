@@ -98,7 +98,7 @@
   :config
   (general-evil-setup)
   (general-create-definer leader
-    :states '(normal)
+    :states '(normal visual)
     :prefix "SPC"))
 
 (use-package evil
