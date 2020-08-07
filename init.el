@@ -115,7 +115,8 @@
     "k" 'kill-buffer-and-window
     "e" 'eval-buffer
     "g" 'grep-find
-    "i" 'counsel-imenu)
+    "i" 'counsel-imenu
+    "o" 'other-window)
   (general-nmap
     "]q" 'next-error
     "[q" 'previous-error))
