@@ -61,17 +61,32 @@
 (setq use-package-always-ensure t)
 
 (use-package nord-theme
-  :config
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions
-                (lambda (frame)
-                  (select-frame frame)
-                  (load-theme 'nord t)))
-    (load-theme 'nord t)))
+  :init (setq nord0 "#2E3440"
+              nord1 "#3B4252"
+              nord2 "#434C5E" 
+              nord3 "#4C566A" 
+              nord4 "#D8DEE9" 
+              nord5 "#E5E9F0" 
+              nord6 "#ECEFF4" 
+              nord7 "#8FBCBB" 
+              nord8 "#88C0D0" 
+              nord9 "#81A1C1" 
+              nord10 "#5E81AC" 
+              nord11 "#BF616A" 
+              nord12 "#D08770" 
+              nord13 "#EBCB8B" 
+              nord14 "#A3BE8C" 
+              nord15 "#B48EAD")
+  :config (if (daemonp)
+              (add-hook 'after-make-frame-functions
+                        (lambda (frame)
+                          (select-frame frame)
+                          (load-theme 'nord t)))
+            (load-theme 'nord t)))
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
-  :config (set-face-attribute 'highlight-numbers-number nil :foreground "#B48EAD"))
+  :config (set-face-attribute 'highlight-numbers-number nil :foreground nord15))
 
 (use-package delight)
 
