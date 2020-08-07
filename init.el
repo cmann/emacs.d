@@ -78,12 +78,14 @@
               nord13 "#EBCB8B" 
               nord14 "#A3BE8C" 
               nord15 "#B48EAD")
-  :config (if (daemonp)
-              (add-hook 'after-make-frame-functions
-                        (lambda (frame)
-                          (select-frame frame)
-                          (load-theme 'nord t)))
-            (load-theme 'nord t)))
+  :config
+  (set-face-attribute 'sh-heredoc nil :foreground nord14)
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (select-frame frame)
+                  (load-theme 'nord t)))
+    (load-theme 'nord t)))
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
