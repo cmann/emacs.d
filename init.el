@@ -79,6 +79,7 @@
               nord14 "#A3BE8C" 
               nord15 "#B48EAD")
   :config
+  (require 'sh-script)
   (set-face-attribute 'sh-heredoc nil :foreground nord14)
   (if (daemonp)
       (add-hook 'after-make-frame-functions
