@@ -174,12 +174,6 @@
   :config (yas-global-mode))
 (use-package yasnippet-snippets)
 
-(use-package markdown-mode
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
 (use-package rust-mode
   :general (:keymaps 'rust-mode-map
                      "C-c C-f" nil
@@ -201,19 +195,14 @@
   :general (:keymaps 'zig-mode-map
                      "C-c f" 'zig-format-buffer))
 
-(use-package dockerfile-mode
-  :mode (("Dockerfile\\'" . dockerfile-mode)))
-
-(use-package yaml-mode
-  :mode (("\\.yml\\'" . yaml-mode)
-         ("\\.yaml\\'" . yaml-mode)))
-
 (use-package slime
   :config (setq inferior-lisp-program "sbcl"))
 
-(use-package typescript-mode)
-
+(use-package yaml-mode)
+(use-package markdown-mode)
+(use-package dockerfile-mode)
 (use-package protobuf-mode)
+(use-package typescript-mode)
 
 (defun black-format-buffer () (interactive)
        (shell-command (concat "black " buffer-file-name)))
