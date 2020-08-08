@@ -1,9 +1,8 @@
 ;;; init --- Emacs configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(add-to-list 'default-frame-alist
-             '(fullscreen . maximized)
-             '(font . "Iosevka-12"))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(font . "Iosevka-12"))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
