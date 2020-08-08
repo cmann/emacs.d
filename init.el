@@ -154,14 +154,13 @@
   :config (global-company-mode))
 
 (use-package projectile
-  :demand
   :delight
   :config
   (setq projectile-completion-system 'ivy)
   (setq projectile-project-search-path '("~/devel"))
   (projectile-mode)
   :general
-  (leader "p" 'projectile-command-map)
+  (leader "p" '(:keymap projectile-command-map))
   (:keymaps 'prog-mode-map
             "C-c c" 'projectile-compile-project
             "C-c t" 'projectile-test-project
