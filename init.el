@@ -148,7 +148,7 @@
   :config
   (setq ace-jump-mode-scope 'global)
   (set-face-attribute 'ace-jump-face-background nil :foreground nord3)
-  (set-face-attribute 'ace-jump-face-foreground nil :foreground nord7)
+  (set-face-attribute 'ace-jump-face-foreground nil :foreground nord8)
   :general (leader "j" 'ace-jump-word-mode))
 
 (use-package company
