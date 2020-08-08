@@ -28,8 +28,8 @@
       delete-old-versions t
       backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
 (add-to-list 'completion-styles 'flex)
 
@@ -39,15 +39,17 @@
  '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
 
 (require 'ansi-color)
-(add-hook 'compilation-filter-hook
-          (lambda () (ansi-color-apply-on-region compilation-filter-start (point-max))))
+(add-hook
+ 'compilation-filter-hook
+ (lambda () (ansi-color-apply-on-region compilation-filter-start (point-max))))
 
 (setq vc-handled-backends '(Git))
 (customize-set-variable
  'tramp-ssh-controlmaster-options
  (concat
   "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
-  "-o ControlMaster=auto -o ControlPersist=yes"))
+  "-o ControlMaster=auto "
+  "-o ControlPersist=yes "))
 
 (require 'package)
 (setq package-enable-at-startup nil)
