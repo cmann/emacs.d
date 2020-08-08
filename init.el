@@ -118,7 +118,11 @@
     "e" 'eval-buffer
     "g" 'grep-find
     "i" 'counsel-imenu
-    "o" 'other-window)
+    "o" 'other-window
+    "1" 'delete-other-windows
+    "2" 'split-window-below
+    "3" 'split-window-right
+    "0" 'delete-window)
   (general-nmap
     "]q" 'next-error
     "[q" 'previous-error))
