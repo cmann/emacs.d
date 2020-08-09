@@ -19,6 +19,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
 (setq compilation-read-command nil)
+(setq custom--inhibit-theme-enable nil)
 (setq create-lockfiles nil)
 (setq vc-make-backup-files t
       version-control t
@@ -79,9 +80,9 @@
               nord13 "#EBCB8B"
               nord14 "#A3BE8C"
               nord15 "#B48EAD")
+  :custom-face (sh-heredoc ((t (:foreground ,nord14))))
   :config
   (require 'sh-script)
-  (set-face-attribute 'sh-heredoc nil :foreground nord14)
   (if (daemonp)
       (add-hook 'after-make-frame-functions
                 (lambda (frame)
@@ -91,7 +92,7 @@
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
-  :config (set-face-attribute 'highlight-numbers-number nil :foreground nord15))
+  :config (custom-set-faces `(highlight-numbers-number ((t (:foreground ,nord15))))))
 
 (use-package delight)
 
@@ -150,9 +151,10 @@
 
 (use-package ace-jump-mode
   :config
+  (custom-set-faces
+   `(ace-jump-face-background ((t (:foreground ,nord3))))
+   `(ace-jump-face-foreground ((t (:foreground ,nord8)))))
   (setq ace-jump-mode-scope 'global)
-  (set-face-attribute 'ace-jump-face-background nil :foreground nord3)
-  (set-face-attribute 'ace-jump-face-foreground nil :foreground nord8)
   :general (leader "j" 'ace-jump-word-mode))
 
 (use-package company
