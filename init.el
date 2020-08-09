@@ -19,6 +19,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
 (setq compilation-read-command nil)
+(setq mode-require-final-newline t)
 (setq custom--inhibit-theme-enable nil)
 (setq create-lockfiles nil)
 (setq vc-make-backup-files t
