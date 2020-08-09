@@ -83,9 +83,7 @@
               nord13 "#EBCB8B"
               nord14 "#A3BE8C"
               nord15 "#B48EAD")
-  :custom-face (sh-heredoc ((t (:foreground ,nord14))))
   :config
-  (require 'sh-script)
   (if (daemonp)
       (add-hook 'after-make-frame-functions
                 (lambda (frame)
@@ -195,6 +193,9 @@
   :delight yas-minor-mode
   :config (yas-global-mode))
 (use-package yasnippet-snippets)
+
+(use-package sh-script
+  :config (custom-set-faces `(sh-heredoc ((t (:foreground ,nord14))))))
 
 (use-package rust-mode
   :general (:keymaps 'rust-mode-map
