@@ -35,6 +35,8 @@
 
 (add-to-list 'completion-styles 'flex)
 
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
 (require 'grep)
 (grep-apply-setting
  'grep-find-command
