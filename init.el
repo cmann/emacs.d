@@ -93,6 +93,17 @@
                   (load-theme 'nord t)))
     (load-theme 'nord t)))
 
+(use-package flyspell
+  :hook ((text-mode . flyspell-mode)
+         (org-mode  . flyspell-mode)
+         (prog-mode . flyspell-prog-mode))
+  :config
+  (custom-set-faces
+   `(flyspell-incorrect ((t (:weight bold :underline (:color ,nord11 :style wave))))))
+  (setq ispell-program-name "aspell"
+        ispell-extra-args '("--sug-mode=ultra")
+        flyspell-prog-text-faces (delq 'font-lock-string-face flyspell-prog-text-faces)))
+
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
   :config (custom-set-faces `(highlight-numbers-number ((t (:foreground ,nord15))))))
