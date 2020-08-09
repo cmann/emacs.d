@@ -93,6 +93,8 @@
                   (load-theme 'nord t)))
     (load-theme 'nord t)))
 
+(use-package delight)
+
 (use-package flyspell
   :hook ((text-mode . flyspell-mode)
          (org-mode  . flyspell-mode)
@@ -107,8 +109,6 @@
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
   :config (custom-set-faces `(highlight-numbers-number ((t (:foreground ,nord15))))))
-
-(use-package delight)
 
 (use-package which-key
   :delight
