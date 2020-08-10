@@ -114,6 +114,9 @@
 
 (use-package evil
   :init (setq evil-want-Y-yank-to-eol t)
+  :hook
+  ((evil-visual-state-entry . (lambda() (setq-local global-hl-line-mode nil)))
+   (evil-visual-state-exit  . (lambda() (setq-local global-hl-line-mode 1))))
   :config (evil-mode)
   :general
   (leader
