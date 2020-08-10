@@ -18,7 +18,6 @@
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
-(setq compilation-read-command nil)
 (setq mode-require-final-newline t)
 (setq custom--inhibit-theme-enable nil)
 (setq create-lockfiles nil)
@@ -45,7 +44,11 @@
 (require 'ansi-color)
 (add-hook
  'compilation-filter-hook
- (lambda () (ansi-color-apply-on-region compilation-filter-start (point-max))))
+ (lambda ()
+   (when (eq major-mode 'compilation-mode)
+     (ansi-color-apply-on-region compilation-filter-start (point-max)))))
+(setq compilation-read-command nil
+      compilation-always-kill t)
 
 (setq vc-handled-backends '(Git))
 (customize-set-variable
