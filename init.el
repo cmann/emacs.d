@@ -165,6 +165,43 @@
   (setq amx-show-key-bindings nil)
   (amx-mode))
 
+(use-package vterm
+  :hook ('vterm-mode . (lambda () (setq-local global-hl-line-mode nil)))
+  :config
+  (evil-set-initial-state 'vterm-mode 'emacs)
+  (setq vterm-kill-buffer-on-exit t)
+  (custom-set-faces
+   `(vterm-color-default ((t (:foreground ,nord4  :background ,nord0))))
+   `(vterm-color-black   ((t (:foreground ,nord1  :background ,nord3))))
+   `(vterm-color-red     ((t (:foreground ,nord11 :background ,nord11))))
+   `(vterm-color-green   ((t (:foreground ,nord14 :background ,nord14))))
+   `(vterm-color-yellow  ((t (:foreground ,nord13 :background ,nord13))))
+   `(vterm-color-blue    ((t (:foreground ,nord9  :background ,nord9))))
+   `(vterm-color-magenta ((t (:foreground ,nord15 :background ,nord15))))
+   `(vterm-color-cyan    ((t (:foreground ,nord8  :background ,nord7))))
+   `(vterm-color-white   ((t (:foreground ,nord5  :background ,nord6)))))
+  (defun visit-vterm ()
+    (interactive)
+    (let ((is-term (eq major-mode 'vterm-mode))
+          (is-running (term-check-proc (buffer-name)))
+          (other-term (get-buffer "vterm")))
+      (if is-term
+          (if is-running
+              (if (string= "vterm" (buffer-name))
+                  (previous-buffer)
+                (if other-term
+                    (switch-to-buffer "vterm")
+                  (vterm)))
+            (kill-buffer (buffer-name))
+            (vterm))
+        (if other-term
+            (if (term-check-proc "vterm")
+                (switch-to-buffer "vterm")
+              (kill-buffer "vterm")
+              (vterm))
+          (vterm)))))
+  :general (leader "t" 'visit-vterm))
+
 (use-package ace-jump-mode
   :config
   (custom-set-faces
