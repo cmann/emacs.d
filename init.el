@@ -10,7 +10,6 @@
 (blink-cursor-mode -1)
 
 (column-number-mode)
-(global-hl-line-mode)
 (global-auto-revert-mode)
 (electric-pair-mode)
 (show-paren-mode)
@@ -36,6 +35,9 @@
 (add-to-list 'completion-styles 'flex)
 
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'text-mode-hook 'hl-line-mode)
 
 (require 'grep)
 (grep-apply-setting
@@ -115,8 +117,8 @@
 (use-package evil
   :init (setq evil-want-Y-yank-to-eol t)
   :hook
-  ((evil-visual-state-entry . (lambda() (setq-local global-hl-line-mode nil)))
-   (evil-visual-state-exit  . (lambda() (setq-local global-hl-line-mode 1))))
+  ((evil-visual-state-entry . (lambda() (hl-line-mode -1)))
+   (evil-visual-state-exit  . (lambda() (hl-line-mode +1))))
   :config (evil-mode)
   :general
   (leader
@@ -169,7 +171,7 @@
   (amx-mode))
 
 (use-package vterm
-  :hook ('vterm-mode . (lambda () (setq-local global-hl-line-mode nil)))
+  :hook ('vterm-mode . (lambda () (hl-line-mode -1)))
   :config
   (evil-set-initial-state 'vterm-mode 'emacs)
   (setq vterm-kill-buffer-on-exit t)
