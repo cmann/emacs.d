@@ -205,7 +205,7 @@
               (kill-buffer "vterm")
               (vterm))
           (vterm)))))
-  :general (leader "t" 'visit-vterm))
+  :general ("C-`" 'visit-vterm))
 
 (use-package ace-jump-mode
   :config
