@@ -275,8 +275,14 @@
 (use-package protobuf-mode)
 (use-package typescript-mode)
 
-(defun black-format-buffer () (interactive)
-       (shell-command (concat "black " buffer-file-name)))
+(defun buffer-local-file-name ()
+  (if (file-remote-p buffer-file-name)
+      (tramp-file-name-localname (tramp-dissect-file-name buffer-file-name))
+    (buffer-file-name)))
+
+(defun black-format-buffer ()
+  (interactive)
+  (shell-command (concat "black " (buffer-local-file-name))))
 
 (general-def python-mode-map
   "C-c f" 'black-format-buffer)
