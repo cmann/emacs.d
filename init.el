@@ -148,6 +148,7 @@
   :delight)
 
 (use-package flyspell
+  :delight
   :hook ((text-mode . flyspell-mode)
          (org-mode  . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
