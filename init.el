@@ -42,26 +42,24 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (require 'grep)
-(grep-apply-setting
- 'grep-find-command
- '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
+(grep-apply-setting 'grep-find-command
+                    '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
 
 (require 'ansi-color)
-(add-hook
- 'compilation-filter-hook
- (lambda ()
-   (when (eq major-mode 'compilation-mode)
-     (ansi-color-apply-on-region compilation-filter-start (point-max)))))
+(add-hook 'compilation-filter-hook
+          (lambda ()
+            (when (eq major-mode 'compilation-mode)
+              (ansi-color-apply-on-region compilation-filter-start (point-max)))))
 (setq compilation-read-command nil
       compilation-always-kill t)
 
 (setq vc-handled-backends '(Git))
-(customize-set-variable
- 'tramp-ssh-controlmaster-options
- (concat
-  "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
-  "-o ControlMaster=auto "
-  "-o ControlPersist=yes "))
+(setq tramp-default-method "ssh")
+(customize-set-variable 'tramp-ssh-controlmaster-options
+                        (concat
+                         "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
+                         "-o ControlMaster=auto "
+                         "-o ControlPersist=yes "))
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -118,9 +116,8 @@
 
 (use-package evil
   :init (setq evil-want-Y-yank-to-eol t)
-  :hook
-  ((evil-visual-state-entry . (lambda() (hl-line-mode -1)))
-   (evil-visual-state-exit  . (lambda() (hl-line-mode +1))))
+  :hook ((evil-visual-state-entry . (lambda() (hl-line-mode -1)))
+         (evil-visual-state-exit  . (lambda() (hl-line-mode +1))))
   :config (evil-mode)
   :general
   (leader
@@ -155,8 +152,7 @@
          (org-mode  . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
   :config
-  (custom-set-faces
-   `(flyspell-incorrect ((t (:weight bold :underline (:color ,nord11 :style wave))))))
+  (custom-set-faces `(flyspell-incorrect ((t (:weight bold :underline (:color ,nord11 :style wave))))))
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra")
         flyspell-prog-text-faces (delq 'font-lock-string-face flyspell-prog-text-faces)))
@@ -176,17 +172,17 @@
   :hook ('vterm-mode . (lambda () (hl-line-mode -1)))
   :config
   (evil-set-initial-state 'vterm-mode 'emacs)
-  (setq vterm-kill-buffer-on-exit t)
-  (custom-set-faces
-   `(vterm-color-default ((t (:foreground ,nord4  :background ,nord0))))
-   `(vterm-color-black   ((t (:foreground ,nord1  :background ,nord3))))
-   `(vterm-color-red     ((t (:foreground ,nord11 :background ,nord11))))
-   `(vterm-color-green   ((t (:foreground ,nord14 :background ,nord14))))
-   `(vterm-color-yellow  ((t (:foreground ,nord13 :background ,nord13))))
-   `(vterm-color-blue    ((t (:foreground ,nord9  :background ,nord9))))
-   `(vterm-color-magenta ((t (:foreground ,nord15 :background ,nord15))))
-   `(vterm-color-cyan    ((t (:foreground ,nord8  :background ,nord7))))
-   `(vterm-color-white   ((t (:foreground ,nord5  :background ,nord6)))))
+  (setq vterm-shell "bash"
+        vterm-kill-buffer-on-exit t)
+  (custom-set-faces `(vterm-color-default ((t (:foreground ,nord4  :background ,nord0))))
+                    `(vterm-color-black   ((t (:foreground ,nord1  :background ,nord3))))
+                    `(vterm-color-red     ((t (:foreground ,nord11 :background ,nord11))))
+                    `(vterm-color-green   ((t (:foreground ,nord14 :background ,nord14))))
+                    `(vterm-color-yellow  ((t (:foreground ,nord13 :background ,nord13))))
+                    `(vterm-color-blue    ((t (:foreground ,nord9  :background ,nord9))))
+                    `(vterm-color-magenta ((t (:foreground ,nord15 :background ,nord15))))
+                    `(vterm-color-cyan    ((t (:foreground ,nord8  :background ,nord7))))
+                    `(vterm-color-white   ((t (:foreground ,nord5  :background ,nord6)))))
   (defun visit-vterm ()
     (interactive)
     (let ((is-term (eq major-mode 'vterm-mode))
@@ -211,9 +207,8 @@
 
 (use-package ace-jump-mode
   :config
-  (custom-set-faces
-   `(ace-jump-face-background ((t (:foreground ,nord3))))
-   `(ace-jump-face-foreground ((t (:foreground ,nord8)))))
+  (custom-set-faces `(ace-jump-face-background ((t (:foreground ,nord3))))
+                    `(ace-jump-face-foreground ((t (:foreground ,nord8)))))
   (setq ace-jump-mode-scope 'global)
   :general (leader "j" 'ace-jump-word-mode))
 
@@ -224,8 +219,8 @@
 (use-package projectile
   :delight
   :config
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-project-search-path '("~/devel"))
+  (setq projectile-completion-system 'ivy
+        projectile-project-search-path '("~/devel"))
   (projectile-mode)
   :general
   (leader "p" '(:keymap projectile-command-map))
