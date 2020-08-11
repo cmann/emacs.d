@@ -39,6 +39,8 @@
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'text-mode-hook 'hl-line-mode)
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (require 'grep)
 (grep-apply-setting
  'grep-find-command
