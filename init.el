@@ -56,10 +56,9 @@
 (setq vc-handled-backends '(Git))
 (setq tramp-default-method "ssh")
 (customize-set-variable 'tramp-ssh-controlmaster-options
-                        (concat
-                         "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
-                         "-o ControlMaster=auto "
-                         "-o ControlPersist=yes "))
+                        (concat "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
+                                "-o ControlMaster=auto "
+                                "-o ControlPersist=yes "))
 
 (require 'package)
 (setq package-enable-at-startup nil)
