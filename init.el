@@ -186,17 +186,17 @@
     (interactive)
     (let ((is-term (eq major-mode 'vterm-mode))
           (is-running (term-check-proc (buffer-name)))
-          (other-term (get-buffer "vterm")))
+          (term-buffer (get-buffer "vterm")))
       (if is-term
           (if is-running
               (if (string= "vterm" (buffer-name))
                   (previous-buffer)
-                (if other-term
+                (if term-buffer
                     (switch-to-buffer "vterm")
                   (vterm)))
             (kill-buffer (buffer-name))
             (vterm))
-        (if other-term
+        (if term-buffer
             (if (term-check-proc "vterm")
                 (switch-to-buffer "vterm")
               (kill-buffer "vterm")
