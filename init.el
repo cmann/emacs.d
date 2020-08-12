@@ -235,6 +235,7 @@
 (use-package yasnippet-snippets)
 
 (use-package sh-script
+  :mode (("\\.bashrc" . sh-mode))
   :config (custom-set-faces `(sh-heredoc ((t (:foreground ,nord14))))))
 
 (use-package rust-mode
