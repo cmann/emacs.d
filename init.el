@@ -15,6 +15,10 @@
 (show-paren-mode)
 (recentf-mode)
 
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'text-mode-hook 'hl-line-mode)
+
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
@@ -33,11 +37,6 @@
               tab-width 4)
 
 (add-to-list 'completion-styles 'flex)
-
-(add-hook 'dired-mode-hook 'auto-revert-mode)
-
-(add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'text-mode-hook 'hl-line-mode)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
