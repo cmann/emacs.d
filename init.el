@@ -184,11 +184,9 @@
                     `(vterm-color-white   ((t (:foreground ,nord5  :background ,nord6)))))
   (defun visit-vterm ()
     (interactive)
-    (let ((is-term (eq major-mode 'vterm-mode))
-          (is-running (term-check-proc (buffer-name)))
-          (term-buffer (get-buffer "vterm")))
-      (if is-term
-          (if is-running
+    (let ((term-buffer (get-buffer "vterm")))
+      (if (eq major-mode 'vterm-mode)
+          (if (term-check-proc (buffer-name))
               (if (string= "vterm" (buffer-name))
                   (previous-buffer)
                 (if term-buffer
