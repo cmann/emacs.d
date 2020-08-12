@@ -1,0 +1,15 @@
+.cache/
+
+auto-save-list/
+backups/
+elpa/
+eshell/
+snippets/
+transient/
+
+.lsp-session-v1
+
+amx-items
+custom.el
+recentf
+projectile-bookmarks.eld
