@@ -18,6 +18,7 @@
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'text-mode-hook 'hl-line-mode)
+(setq hl-line-sticky-flag nil)
 
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
