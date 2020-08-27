@@ -54,8 +54,6 @@
               (ansi-color-apply-on-region compilation-filter-start (point-max)))))
 (setq compilation-read-command nil
       compilation-always-kill t)
-(custom-set-faces `(compilation-mode-line-exit ((t (:foreground ,nord14)))))
-(custom-set-faces `(compilation-mode-line-fail ((t (:foreground ,nord11)))))
 
 (setq vc-handled-backends '(Git))
 (setq tramp-default-method "ssh")
@@ -98,7 +96,9 @@
                 (lambda (frame)
                   (select-frame frame)
                   (load-theme 'nord t)))
-    (load-theme 'nord t)))
+    (load-theme 'nord t))
+(custom-set-faces `(compilation-mode-line-exit ((t (:foreground ,nord14)))))
+(custom-set-faces `(compilation-mode-line-fail ((t (:foreground ,nord11))))))
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
