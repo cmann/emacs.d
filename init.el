@@ -20,6 +20,8 @@
 (add-hook 'text-mode-hook 'hl-line-mode)
 (setq hl-line-sticky-flag nil)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
 (setq ring-bell-function 'ignore)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq org-directory "~/org")
@@ -228,6 +230,12 @@
             "C-c c" 'projectile-compile-project
             "C-c t" 'projectile-test-project
             "C-c r" 'projectile-run-project))
+
+(use-package flycheck)
+(use-package lsp-mode
+  :hook ((prog-mode  . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :config (setq lsp-completion-provider :capf))
 
 (use-package magit
   :general (leader "m" 'magit-file-dispatch))
