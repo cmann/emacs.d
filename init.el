@@ -34,6 +34,7 @@
 
 (setq-default indent-tabs-mode nil
               tab-width 4)
+(setq-default js-indent-level 2)
 
 (add-to-list 'completion-styles 'flex)
 
