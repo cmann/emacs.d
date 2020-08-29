@@ -216,7 +216,9 @@
 
 (use-package company
   :delight
-  :config (global-company-mode))
+  :config
+  (setq company-tooltip-maximum-width 80)
+  (global-company-mode))
 
 (use-package projectile
   :delight
@@ -233,7 +235,8 @@
 
 (use-package flycheck)
 (use-package lsp-mode
-  :hook ((prog-mode  . lsp)
+  :hook ((go-mode  . lsp)
+         (zig-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :config (setq lsp-completion-provider :capf))
 
@@ -267,6 +270,14 @@
                      "C-c f" 'terraform-format-buffer))
 
 (use-package zig-mode
+  :config
+  (require 'lsp)
+  (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection "zls")
+    :major-modes '(zig-mode)
+    :server-id 'zls))
   :general (:keymaps 'zig-mode-map
                      "C-c f" 'zig-format-buffer))
 
