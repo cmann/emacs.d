@@ -97,8 +97,8 @@
                   (select-frame frame)
                   (load-theme 'nord t)))
     (load-theme 'nord t))
-(custom-set-faces `(compilation-mode-line-exit ((t (:foreground ,nord14)))))
-(custom-set-faces `(compilation-mode-line-fail ((t (:foreground ,nord11))))))
+  (custom-set-faces `(compilation-mode-line-exit ((t (:foreground ,nord14)))))
+  (custom-set-faces `(compilation-mode-line-fail ((t (:foreground ,nord11))))))
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode)
