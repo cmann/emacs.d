@@ -47,11 +47,6 @@
 (grep-apply-setting 'grep-find-command
                     '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))
 
-(require 'ansi-color)
-(add-hook 'compilation-filter-hook
-          (lambda ()
-            (when (eq major-mode 'compilation-mode)
-              (ansi-color-apply-on-region compilation-filter-start (point-max)))))
 (setq compilation-read-command nil
       compilation-always-kill t)
 
