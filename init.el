@@ -128,8 +128,8 @@
     "i" 'counsel-imenu
     "o" 'other-window
     "1" 'delete-other-windows
-    "2" 'split-window-below
-    "3" 'split-window-right
+    "2" (lambda () (interactive) (split-window-below) (other-window 1))
+    "3" (lambda () (interactive) (split-window-right) (other-window 1))
     "0" 'delete-window)
   (general-nmap
     "]q" 'next-error
