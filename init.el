@@ -172,6 +172,7 @@
   :config
   (evil-set-initial-state 'vterm-mode 'emacs)
   (setq vterm-shell "bash"
+        vterm-max-scrollback 10000
         vterm-kill-buffer-on-exit t)
   (custom-set-faces `(vterm-color-default ((t (:foreground ,nord4  :background ,nord0))))
                     `(vterm-color-black   ((t (:foreground ,nord1  :background ,nord3))))
