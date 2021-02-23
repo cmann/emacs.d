@@ -285,6 +285,7 @@
 (use-package dockerfile-mode)
 (use-package protobuf-mode)
 (use-package typescript-mode)
+(use-package php-mode)
 
 (defun buffer-local-file-name ()
   (if (file-remote-p buffer-file-name)
